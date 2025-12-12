@@ -185,7 +185,7 @@ python ensemble_evaluate.py --storage . --model-dir=model1 --model-dir=model2 --
 
 ### Other
 
-`result_tables.py` prints summary tables of experiment results from the "evaluation.json" format we use, but expects the whole set of experiment results.
+`summary.py` prints a short summary of the evaluation results (see `summary.py --help`).
 
 ## Codebase functionality
 
