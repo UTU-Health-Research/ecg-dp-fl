@@ -44,7 +44,7 @@ Data download links and preprocessing scripts:
 | G12EC | https://physionet.org/content/challenge-2021/1.0.3/#files       |        -        |  https://github.com/UTU-Health-Research/dl-ecg-classifier/blob/main/notebooks/1_setup_runs.ipynb |
 | PTB & PTBXL | https://physionet.org/content/challenge-2021/1.0.3/#files       |        -        |  https://github.com/UTU-Health-Research/dl-ecg-classifier/blob/main/notebooks/1_setup_runs.ipynb |
 | SPH | https://doi.org/10.6084/m9.figshare.c.5779802 | - |  https://github.com/UTU-Health-Research/dl-ecg-classifier/blob/main/notebooks/1_setup_runs.ipynb |
-| Code 15% | https://zenodo.org/records/4916206 | - | [code_preproc.ipynb](code_preproc.ipynb) |
+| CODE-15% | https://zenodo.org/records/4916206 | - | [code_preproc.ipynb](code_preproc.ipynb) |
 | Hefei | https://tianchi.aliyun.com/competition/entrance/231754/ | - | [hefei_preproc.ipynb](hefei_preproc.ipynb) |
 | MIMIC IV ECG | https://physionet.org/content/mimic-iv-ecg-ext-icd-labels/1.0.1/ (labels), https://physionet.org/content/mimic-iv-ecg/1.0/ (ECG) | PhysioNet | [mimic_preproc.ipynb](mimic_preproc.ipynb) |
 
@@ -127,9 +127,26 @@ python dp_training.py --storage=. \
 
 The "full" and "small" subsets are defined in `src/dataloader/silo.py`, the latter is for testing with 10% of the data.
 
-Table of algorithms and extra parameters here
+The `--mode` parameter selects the algorithm. Possible DPFL algorithms and their required parameters
 
-Table of model architectures
+| mode | algorithm | extra params |
+| ----- | --------- | ----------- |
+| fedavg_local | DP-FedAvg |        |
+| fedrep_local | DP-FedRep |        |
+| fedprox_local | DP-FedRep | --mu=0.01   |
+| mrmtl_local | MR-MTL |  --mu=0.01   |
+| fedsgd_shared | DP-FedAdam | --local-epoch=1 --sample-rate=0.02 |
+
+Whatever you use for `--num-rounds`, for DP-FedAdam this parameter should be at least 20 times larger than with other algorithms. `--mode=central` trains on the combined data of silos and `--mode=local` trains on a single silo. In both cases, omit the federated parameters `--num-rounds` and `--n-collab`. If you set `--epsilon=0` and `--sigma=0`, differential privacy is turned off.
+
+The DP versions of ResNet-SE architectures, ResB # ch. is the number of channels in two consecutive residual blocks:
+
+| arch | residual blocks | ResB 1 ch. | ResB 3 ch. | ResB 5 ch. | ResB 7 ch. |
+| --- | --- | --- | --- | --- | --- |
+| v1 | 8 | 64 | 128 | 256 | 512 |
+| v2 | 8 | 32 | 64 | 128 | 256 |
+| v3 | 8 | 16 | 32 | 64 | 128 |
+| v4 | 8 | 8 | 16 | 32 | 64 |
 
 ### Feature extraction
 
