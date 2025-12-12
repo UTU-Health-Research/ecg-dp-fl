@@ -133,7 +133,7 @@ The `--mode` parameter selects the algorithm. Possible DPFL algorithms and their
 | ----- | --------- | ----------- |
 | fedavg_local | DP-FedAvg |        |
 | fedrep_local | DP-FedRep |        |
-| fedprox_local | DP-FedRep | --mu=0.01   |
+| fedprox_local | DP-FedProx | --mu=0.01   |
 | mrmtl_local | MR-MTL |  --mu=0.01   |
 | fedsgd_shared | DP-FedAdam | --local-epoch=1 --sample-rate=0.02 |
 
