@@ -2,7 +2,7 @@
 
 Code to supplement the paper:
 
-*Differentially Private Federated Learning in Multihospital ECG Classification: Empirical Evaluation* by Priit Järv, Chito Patiño, Andrei Kazlouski, Andrei Kazlouski, Zoher Orabe, Tapio Pahikkala and Antti Airola (submitted for publication)
+*Differentially Private Federated Learning in Multihospital ECG Classification: Empirical Evaluation* by Priit Järv, Chito Patiño, Andrei Kazlouski, Zoher Orabe, Tapio Pahikkala and Antti Airola (submitted for publication)
 
 Purpose: train, finetune and evaluate differentially private federated learning (DPFL) algorithms for 12-lead ECG multilabel classification.
 
